@@ -24,12 +24,4 @@ public class RoleService {
     }
     public List<Role> getAllRoles() {return roleRepository.findAll();}
 
-//    public List<String> getRolesAsStringList() {
-//        List<Role> roles = roleRepository.findAll();
-//        List<String> rolesAsStringList = new ArrayList<>();
-//        for (Role role: roles) {
-//            rolesAsStringList.add(role.getAuthority());
-//        }
-//        return rolesAsStringList;
-//    }
 }

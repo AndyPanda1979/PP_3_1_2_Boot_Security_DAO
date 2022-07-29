@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.controllers;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,8 @@ import java.util.List;
 @Controller
 public class AdminController {
 
-    final
-    UserServiceImpl userService;
-    final
-    RoleService roleService;
+    final UserServiceImpl userService;
+    final RoleService roleService;
 
     public AdminController(UserServiceImpl userService, RoleService roleService) {
         this.userService = userService;
@@ -35,7 +34,6 @@ public class AdminController {
         model.addAttribute("admin", admin);
         return ("admin");
     }
-
 
     /* ====== READ ====== */
 
@@ -68,7 +66,6 @@ public class AdminController {
         return ("redirect:/admin/users");
     }
 
-
     /* ====== UPDATE ====== */
 
     @GetMapping(value = "admin/user/{id}/edit")
@@ -79,16 +76,18 @@ public class AdminController {
         model.addAttribute("user", user);
         model.addAttribute("listRoles", listRoles);
         model.addAttribute("userRoles", userRoles);
+        // разбираемся с check
+
+        boolean flag = true;
+        model.addAttribute("flag", flag);
         return ("admin/edituser_form");
     }
-
 
     @PatchMapping("admin/user")
     public String saveUser(@ModelAttribute ("user") User user) {
         userService.saveUser(user);
         return ("redirect:/admin/users");
     }
-
 
     /* ====== DELETE ====== */
 
