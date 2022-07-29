@@ -8,7 +8,6 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,25 +31,9 @@ public class User {
 
 
     private List<Role> roles = new ArrayList<>();
-    // roles
-    public void addRole(Role role) {this.roles.add(role);}
-
-    public void setRoles(List<Role> roles) {this.roles = roles;}
-    public List<Role> getRoles() {return roles;}
-
-
-    // password
-    public void setPassword(String password) {this.password = password;}
-    public String getPassword() {return password;}
-    // id
-    public void setId(long id) {this.id = id;}
-    public long getId() {return id;}
-    // firstName
-    public void setFirstName(String firstName) {this.firstName = firstName;}
-    public String getFirstName() {return firstName;}
-    // lastName
-    public void setLastName(String lastName) {this.lastName = lastName;}
-    public String getLastName() {return lastName;}
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
 
     // конструкторы
     public User () {}
@@ -61,4 +44,35 @@ public class User {
     }
 
 
+    // Геттеры / Сеттеры
+    public List<Role> getRoles() {
+        return roles;
+    }
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+    public long getId() {
+        return id;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
 }

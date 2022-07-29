@@ -1,10 +1,10 @@
 package ru.kata.spring.boot_security.demo.services;
 
 import org.springframework.stereotype.Service;
+import ru.kata.spring.boot_security.demo.dao.role.RoleDao;
+import ru.kata.spring.boot_security.demo.dao.user.UserDao;
 import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
-import ru.kata.spring.boot_security.demo.repositories.RoleRepository;
-import ru.kata.spring.boot_security.demo.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,29 +12,31 @@ import java.util.List;
 @Service
 public class UserServiceImpl {
 
-    final
-    RoleRepository roleRepository;
+    final UserDao userDao;
+    final RoleDao roleDao;
 
-    final
-    UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+    public UserServiceImpl(UserDao userDao, RoleDao roleDao) {
+        this.userDao = userDao;
+        this.roleDao = roleDao;
     }
 
     public List<User> getUsers() {
-        return userRepository.findAll();
+        return userDao.findAllUsers();
     }
 
     public User getUserById(Long id) {
-        return userRepository.findUserById(id).get();
+        return userDao.findUserById(id);
+    }
+    public void saveUser(User user) {
+        userDao.saveUser(user);
+    }
+    public void deleteUser(User user) {
+        userDao.deleteUser(user.getId());
     }
 
-    public void saveUser(User user) {
-        userRepository.saveAndFlush(user);
+    public void updateUser(User user) {
+        userDao.updateUser(user);
     }
-    public void deleteUser(User user) {userRepository.delete(user);}
 
     public List<String> getUserRolesAsStringList(User user) {
         List<Role> userRoles = user.getRoles();

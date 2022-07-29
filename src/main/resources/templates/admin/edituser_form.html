@@ -13,17 +13,13 @@
 
     <th:block th:each="s : ${listRoles}">
 
-      <input th:type="checkbox" th:checked="checked"
+      <input th:type="checkbox"
              th:field="*{roles}"
              th:text="${s.getAuthority()}"
-             th:value="${s.id}"
-             th:attr="checked='checked'"/>
-
+             th:value="${s.role}"/>
     </th:block>
 
     <input type="submit" value="Обновить">
   </form>
 </body>
 </html>
-
-<!--th:checked="${userRoles.contains(s.getAuthority())== true}">-->

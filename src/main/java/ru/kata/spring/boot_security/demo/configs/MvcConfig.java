@@ -13,7 +13,6 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/user").setViewName("user");
         registry.addViewController("/admin").setViewName("admin");
     }
-
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry){
         InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver("templates/", ".html");

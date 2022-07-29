@@ -1,6 +1,5 @@
 package ru.kata.spring.boot_security.demo.controllers;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,7 +23,6 @@ public class AdminController {
         this.userService = userService;
         this.roleService = roleService;
     }
-
 
     @GetMapping(value = "/admin")
     public String adminPage(ModelMap model) {
@@ -85,7 +83,7 @@ public class AdminController {
 
     @PatchMapping("admin/user")
     public String saveUser(@ModelAttribute ("user") User user) {
-        userService.saveUser(user);
+        userService.updateUser(user);
         return ("redirect:/admin/users");
     }
 

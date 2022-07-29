@@ -3,7 +3,6 @@ package ru.kata.spring.boot_security.demo.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
 
 import java.util.*;
@@ -25,7 +24,9 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     @Override
-    public String getPassword() {return this.user.getPassword();}
+    public String getPassword() {
+        return this.user.getPassword();
+    }
 
     @Override
     public String getUsername() {
@@ -52,5 +53,7 @@ public class UserDetailsImpl implements UserDetails {
         return true;
     }
 
-    public User getUser() {return this.user;}
+    public User getUser() {
+        return this.user;
+    }
 }
