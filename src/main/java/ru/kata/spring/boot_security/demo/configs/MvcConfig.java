@@ -19,3 +19,4 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.viewResolver(internalResourceViewResolver);
     }
 }
+
