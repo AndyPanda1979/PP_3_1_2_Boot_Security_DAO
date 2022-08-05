@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.controllers;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,10 +24,10 @@ public class AdminController {
     }
 
     @GetMapping(value = "/admin")
-    public String adminPage(ModelMap model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User admin = (User) authentication.getPrincipal();
-        model.addAttribute("admin", admin);
+    public String adminPage(ModelMap model, @AuthenticationPrincipal User testUser) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        User admin = (User) authentication.getPrincipal();
+        model.addAttribute("admin", testUser);
         return ("admin");
     }
 
@@ -87,7 +88,7 @@ public class AdminController {
     /* ====== DELETE ====== */
 
     @DeleteMapping(value = "admin/user/{id}/delete")
-    public String deleteUser(@PathVariable ("id") long id, ModelMap model) {
+    public String deleteUser(@PathVariable ("id") long id) {
         User user = userService.getUserById(id);
         userService.deleteUser(user);
         return ("redirect:/admin/users");

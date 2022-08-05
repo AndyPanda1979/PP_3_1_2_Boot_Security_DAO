@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@EnableTransactionManagement
 public class UserDaoImpl implements UserDao{
 
     @PersistenceContext
@@ -27,27 +26,23 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    @Transactional
     public User findUserById(Long id) {
         User user = entityManager.find(User.class, id);
         return user;
     }
 
     @Override
-    @Transactional
     public List<User> findAllUsers() {
         TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u", User.class);
         return query.getResultList();
     }
 
     @Override
-    @Transactional
     public void saveUser(User user) {
         entityManager.persist(user);
     }
 
     @Override
-    @Transactional
     public void updateUser(User updatedUser) {
         List<Role> result = new ArrayList<>();
         for (Role role: updatedUser.getRoles()) {
@@ -58,14 +53,12 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    @Transactional
     public void deleteUser(Long id) {
         User proxyUser = entityManager.find(User.class, id);
         entityManager.remove(proxyUser);
     }
 
     @Override
-    @Transactional
     public Optional<User> tryGetUserByUsername(String username) {
         TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u where u.firstName = :username", User.class);
         query.setParameter("username", username);
